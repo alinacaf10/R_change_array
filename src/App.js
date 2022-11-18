@@ -16,13 +16,19 @@ export default class App extends React.Component {
     };
   }
   handleCloseCard = (idx) => {
-    const clone=this.state.cards.filter((card)=>card.number!==idx)
-    this.setState({cards:clone})
+    const clone = this.state.cards.filter((card) => card.number !== idx);
+    this.setState({ cards: clone });
   };
 
   handleOpenCard = (card) => {
-    // YOUR CODE HERE 2
+    const array = this.state.cards;
+    const newArr = [
+      ...array.slice(0, card),
+      { number: card.number, balance: card.balance },
+      ...array.slice(card)
+    ];
     console.log(card);
+    this.setState({ cards: newArr });
   };
 
   render() {
